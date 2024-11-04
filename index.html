@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Career Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            color: black;
+            overflow: hidden;
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            padding: 10px;
+        }
+
+        /* Title styling */
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Start button styling */
+        .start-button, .select-button {
+            background-color: #d4a017; /* Golden Orange */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        /* Ad box styling */
+        .ad-box {
+            border: 2px solid black;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        /* Overlay for the game page */
+        .overlay {
+            display: none;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Section styling for Start, Prime, End */
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        /* Background styling for the game */
+        .background-image {
+            display: none;
+            background-image: url('https://i.imgur.com/Sr14fJg.jpeg');
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2em;
+            }
+            .start-button, .select-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            .ad-box, .overlay {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .title {
+                font-size: 2.5em;
+            }
+            .start-button, .select-button {
+                font-size: 1.2em;
+            }
+            .ad-box, .overlay {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main page content -->
+    <div class="container" id="mainPage">
+        <h1 class="title">Your Career</h1>
+        <button class="start-button" onclick="startGame()">Start</button>
+        <div class="ad-box">Ad Place</div>
+    </div>
+
+    <!-- Background image and game overlay -->
+    <div class="background-image" id="backgroundImage"></div>
+    <div class="overlay" id="gamePage">
+        <h1 class="title">Your Career</h1>
+        <button class="select-button" onclick="randomizeStats()">Select</button>
+        <div class="section" id="start">
+            <h2>Start</h2>
+            <p>Club: <span id="start-club">-</span></p>
+            <p>Games Played: <span id="start-games">-</span></p>
+            <p>Assists: <span id="start-assists">-</span></p>
+            <p>Goals: <span id="start-goals">-</span></p>
+        </div>
+        <div class="section" id="prime">
+            <h2>Prime</h2>
+            <p>Club: <span id="prime-club">-</span></p>
+            <p>Games Played: <span id="prime-games">-</span></p>
+            <p>Assists: <span id="prime-assists">-</span></p>
+            <p>Goals: <span id="prime-goals">-</span></p>
+        </div>
+        <div class="section" id="end">
+            <h2>End</h2>
+            <p>Club: <span id="end-club">-</span></p>
+            <p>Games Played: <span id="end-games">-</span></p>
+            <p>Assists: <span id="end-assists">-</span></p>
+            <p>Goals: <span id="end-goals">-</span></p>
+        </div>
+        <div class="ad-box">Ad Place</div>
+    </div>
+
+    <script>
+        // Function to start the game
+        function startGame() {
+            // Hide main page and show game page
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("gamePage").style.display = "block";
+            document.getElementById("backgroundImage").style.display = "block";
+        }
+
+        // List of clubs for random selection
+        const clubs = ["Club A", "Club B", "Club C", "Club D", "Club E"];
+
+        // Function to randomly select stats
+        function randomizeStats() {
+            // Randomly select club and stats for each section
+            document.getElementById("start-club").textContent = clubs[Math.floor(Math.random() * clubs.length)];
+            document.getElementById("start-games").textContent = Math.floor(Math.random() * 100) + 1;
+            document.getElementById("start-assists").textContent = Math.floor(Math.random() * 100) + 1;
+            document.getElementById("start-goals").textContent = Math.floor(Math.random() * 100) + 1;
+
+            document.getElementById("prime-club").textContent = clubs[Math.floor(Math.random() * clubs.length)];
+            document.getElementById("prime-games").textContent = Math.floor(Math.random() * 451) + 50;
+            document.getElementById("prime-assists").textContent = Math.floor(Math.random() * 451) + 50;
+            document.getElementById("prime-goals").textContent = Math.floor(Math.random() * 451) + 50;
+
+            document.getElementById("end-club").textContent = clubs[Math.floor(Math.random() * clubs.length)];
+            document.getElementById("end-games").textContent = Math.floor(Math.random() * 51);
+            document.getElementById("end-assists").textContent = Math.floor(Math.random() * 51);
+            document.getElementById("end-goals").textContent = Math.floor(Math.random() * 51);
+        }
+    </script>
+
+</body>
+</html>
