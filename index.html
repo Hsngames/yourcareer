@@ -7,16 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <style>
         /* General styling */
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Prevent body from scrolling */
+        }
+
         body {
             font-family: 'Orbitron', sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background-color: #f5f5f5;
             color: black;
-            overflow: hidden;
         }
 
         /* Main container */
@@ -33,7 +36,7 @@
             margin-bottom: 20px;
         }
 
-        /* Start button styling */
+        /* Button styling */
         .start-button, .select-button {
             background-color: #d4a017; /* Golden Orange */
             color: white;
@@ -67,8 +70,8 @@
             top: 0;
             left: 0;
             height: 100%;
-            overflow-y: auto; /* Enable scrolling on overlay */
             box-sizing: border-box;
+            overflow-y: auto; /* Enable scrolling */
         }
 
         /* Section styling for Start, Prime, End */
@@ -92,7 +95,7 @@
             z-index: -1;
         }
 
-        /* Responsive padding and font-size adjustments */
+        /* Responsive styles */
         @media (max-width: 600px) {
             .title {
                 font-size: 1.8em;
@@ -152,6 +155,9 @@
             document.getElementById("mainPage").style.display = "none";
             document.getElementById("gamePage").style.display = "block";
             document.getElementById("backgroundImage").style.display = "block";
+
+            // Force scroll to the top of the gamePage and enable scroll on overlay
+            document.getElementById("gamePage").scrollTop = 0;
         }
 
         // List of clubs for random selection
@@ -178,4 +184,4 @@
     </script>
 
 </body>
-                                                       </html>
+</html>
